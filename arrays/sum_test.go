@@ -1,6 +1,7 @@
 package main
 
 import (
+	"reflect"
 	"slices"
 	"testing"
 )
@@ -50,5 +51,15 @@ func checkSum(t *testing.T, got int, want int, numbers []int) {
 
 	if got != want {
 		t.Errorf("got %d, want %d, %v", got, want, numbers)
+	}
+}
+
+func TestSumAllTails(t *testing.T) {
+	got := SumAllTails([]int{1, 2}, []int{0, 9})
+	want := []int{2, 9}
+
+	// reflect
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v want %v", got, want)
 	}
 }
