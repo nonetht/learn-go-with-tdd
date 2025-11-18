@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
 
 func TestSum(t *testing.T) {
 
@@ -28,6 +31,18 @@ func TestSum(t *testing.T) {
 
 		checkSum(t, got, want, numbers)
 	})
+}
+
+func TestSumAll(t *testing.T) {
+
+	got := SumAll([]int{1, 2}, []int{0, 9})
+	want := []int{3, 9}
+
+	// slice can't compare to nil
+	// slices standard package is available, 但是该函数希望其中元素是comparable，因此对于二维切片则是不可行的！
+	if !slices.Equal(got, want) {
+		t.Errorf("got %v, want %v", got, want) // got -> []
+	}
 }
 
 func checkSum(t *testing.T, got int, want int, numbers []int) {
